@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+//Classes needed
+@class TFHppleElement;
+
 @interface HtmlViewController : UIViewController
 
 @property UIButton *refreshButton;
 @property UIToolbar *toolbar;
+@property UIView *rootView;
+@property TFHppleElement *rootElement;
 
 @end

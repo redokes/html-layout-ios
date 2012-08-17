@@ -17,6 +17,8 @@
 
 @implementation HtmlViewController
 
+@synthesize rootView;
+@synthesize rootElement;
 @synthesize refreshButton;
 @synthesize toolbar;
 
@@ -31,19 +33,18 @@
 
 - (void)initComponent
 {
-    [self initRefreshButton];
+    [self initRootView];
 }
 
-- (void)initRefreshButton
+- (void)initRootView
 {
-    refreshButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
-    [refreshButton addTarget:self action:@selector(refreshView) forControlEvents:UIControlEventTouchUpInside];
-    CGRect frame = refreshButton.frame;
-    frame.origin.x = 10;
-    frame.origin.y = 10;
-    [refreshButton setFrame:frame];
-    [refreshButton sizeToFit];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
+    NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
+    rootElement = [elements objectAtIndex:0];
+    rootView = [self createViewFromElement:rootElement];
+
 }
 
 - (void)initSubviews
@@ -66,12 +67,7 @@
 
 - (void)loadView
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
-    TFHppleElement *element = [elements objectAtIndex:0];
-    self.view = [self createViewFromElement:element];
+    self.view = rootView;
 }
 
 - (UIView *)createViewFromElement:(TFHppleElement *)element

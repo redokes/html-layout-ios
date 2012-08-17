@@ -10,6 +10,8 @@
 #import "TFHpple.h"
 #import "TFHppleElement.h"
 #import "UIColor+CreateMethods.h"
+#import "UIFlexibleView.h"
+#import "NSString+Util.h"
 
 @interface HtmlViewController ()
 
@@ -45,18 +47,6 @@
     rootElement = [elements objectAtIndex:0];
     rootView = [self createViewFromElement:rootElement];
 
-}
-
-- (void)initSubviews
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *elements = [doc searchWithXPathQuery:@"//body/view/*"];
-    for (TFHppleElement *element in elements) {
-        UIView *view = [self createViewFromElement:element];
-        [self.view addSubview:view];
-     }
 }
 
 - (void)refreshView
@@ -95,27 +85,58 @@
     
     //Set the frame
     CGRect frame = view.frame;
-    frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
+    NSString *width = [element objectForKey:@"width"];
+    if ([width contains:@"%"]) {
+        frame.size.width = [width floatValue] / 100 * rootView.frame.size.width;
+    }
+    else {
+        frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
+    }
+    
     frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
     frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
     frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
     [view setFrame:frame];
     
-    // Process the children
-    for (TFHppleElement *childElement in element.children) {
-        UIView *childView = [self createViewFromElement:childElement];
-        [view addSubview:childView];
+    
+    SEL processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", [view class]]);
+    if ([self respondsToSelector:processChildrenSelector]) {
+        [self performSelector:processChildrenSelector withObject:element.children withObject:view];
     }
     
     //Return the view
     return view;
 }
 
+- (void)processChildren:(NSArray *)children forUIView:(UIView *)view
+{
+    // Process the children
+    for (TFHppleElement *childElement in children) {
+        UIView *childView = [self createViewFromElement:childElement];
+        [view addSubview:childView];
+    }
+}
+
+- (void)processChildren:(NSArray *)children forUIFlexibleView:(UIFlexibleView *)view
+{
+    // Process the children
+    for (TFHppleElement *childElement in children) {
+        UIView *childView = [self createViewFromElement:childElement];
+        
+        // Check for flex
+        [view addItem:childView withFlex:1];
+        if ([childElement objectForKey:@"flex"] != nil) {
+            
+        }
+
+    }
+}
+
+
 - (void)viewDidLoad
 {
     NSLog(@"View did load");
     [super viewDidLoad];
-//    [self initSubviews];
     [toolbar setBarStyle:UIBarStyleBlack];
     //[self.view addSubview:refreshButton];
 }

@@ -36,23 +36,27 @@
     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
     rootElement = [elements objectAtIndex:0];
-    rootView = [self createViewFromElement:rootElement];
+    rootView = [self createViewFromElement:rootElement withParentView:nil];
 }
 
-- (UIView *)createViewFromElement:(TFHppleElement *)element
+- (UIView *)createViewFromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
     //Create the view from the views class attribute
     UIView *view = [[NSClassFromString([element objectForKey:@"class"]) alloc] init];
     
     //Apply the propery
-    [self applyProperty:view fromElement:element];
+    [self applyProperty:view fromElement:element withParentView:parentView];
     
     //Set the background color if necessary
     [self applyBackgroundColor:view fromElement:element];
     
-    //Set the frame
-    [self applyFrame:view fromElement:element];
+    // Loop through attributes
+    [self applyAttributes:view fromElement:element];
     
+    //Set the frame
+    [self applyFrame:view fromElement:element withParentView:(UIView *)parentView];
+    
+    // Process the children
     SEL processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", [view class]]);
     if ([self respondsToSelector:processChildrenSelector]) {
         [self performSelector:processChildrenSelector withObject:element.children withObject:view];
@@ -65,11 +69,11 @@
 ///////////////////////////////////////////////////
 //  Apply Methods
 //////////////////////////////////////////////////
-- (void)applyProperty:(UIView *)view fromElement:(TFHppleElement *)element
+- (void)applyProperty:(UIView *)view fromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
     //Set the property
     NSString *property = [element objectForKey:@"property"];
-    property = [property stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[property substringToIndex:1] uppercaseString]];
+    property = [property capitalize];
     NSString *selectorString = [NSString stringWithFormat:@"set%@:", property];
     SEL propertySelector = NSSelectorFromString(selectorString);
     if ([viewController respondsToSelector:propertySelector]) {
@@ -87,14 +91,41 @@
     [view setBackgroundColor:backgroundColor];
 }
 
-- (void)applyFrame:(UIView *)view fromElement:(TFHppleElement *)element
+- (void)applyAttributes:(UIView *)view fromElement:(TFHppleElement *)element
+{
+    for (NSString *attributeItem in element.attributes) {
+        NSString *attribute = [attributeItem capitalize];
+        NSString *selectorString = [NSString stringWithFormat:@"set%@:", attribute];
+        SEL propertySelector = NSSelectorFromString(selectorString);
+        if ([view respondsToSelector:propertySelector]) {
+            
+            
+            NSMethodSignature *signature = [[view class] instanceMethodSignatureForSelector:propertySelector];
+//            NSLog(@"%s", @encode(NSUInteger));
+//            NSLog(@"%s", [signature getArgumentTypeAtIndex:0]);
+//            NSLog(@"%d", strcmp(@encode(NSUInteger), [signature getArgumentTypeAtIndex:0]));
+//            [viewController performSelector:propertySelector withObject:view];
+        }
+    }
+}
+
+- (void)applyFrame:(UIView *)view fromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
     CGRect frame = view.frame;
+    
+    // Check if this is the root view
+    if (parentView == nil) {
+        frame.size.width = 10;
+        frame.size.height = 10;
+        [view setFrame:frame];
+        return;
+    }
     
     // Apply width
     NSString *width = [element objectForKey:@"width"];
     if ([width contains:@"%"]) {
-//      frame.size.width = [width floatValue] / 100 * rootView.frame.size.width;
+        [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        frame.size.width = [width floatValue] / 100 * parentView.frame.size.width;
     }
     else {
         frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
@@ -110,7 +141,7 @@
 {
     // Process the children
     for (TFHppleElement *childElement in children) {
-        UIView *childView = [self createViewFromElement:childElement];
+        UIView *childView = [self createViewFromElement:childElement withParentView:view];
         [view addSubview:childView];
     }
 }
@@ -119,7 +150,7 @@
 {
     // Process the children
     for (TFHppleElement *childElement in children) {
-        UIView *childView = [self createViewFromElement:childElement];
+        UIView *childView = [self createViewFromElement:childElement withParentView:view];
         
         // Check for flex
         [view addItem:childView withFlex:1];

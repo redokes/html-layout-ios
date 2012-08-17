@@ -12,6 +12,7 @@
 #import "UIColor+CreateMethods.h"
 #import "UIFlexibleView.h"
 #import "NSString+Util.h"
+#import "HtmlViewParser.h"
 
 @interface HtmlViewController ()
 
@@ -19,8 +20,8 @@
 
 @implementation HtmlViewController
 
-@synthesize rootView;
-@synthesize rootElement;
+@synthesize layoutPath;
+@synthesize htmlViewParser;
 @synthesize refreshButton;
 @synthesize toolbar;
 
@@ -33,31 +34,29 @@
     return self;
 }
 
+- (id)initWithLayoutPath:(NSString *)path
+{
+    layoutPath = path;
+    self = [self initWithNibName:nil bundle:nil];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)initComponent
 {
-    [self initRootView];
+    [self initHtmlViewParser];
 }
 
-- (void)initRootView
+- (void)initHtmlViewParser
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
-    rootElement = [elements objectAtIndex:0];
-    rootView = [self createViewFromElement:rootElement];
-
-}
-
-- (void)refreshView
-{
-    [self loadView];
-    [self viewDidLoad];
+    htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
 }
 
 - (void)loadView
 {
-    self.view = rootView;
+//    self.view = rootView;
 }
 
 - (UIView *)createViewFromElement:(TFHppleElement *)element
@@ -87,7 +86,7 @@
     CGRect frame = view.frame;
     NSString *width = [element objectForKey:@"width"];
     if ([width contains:@"%"]) {
-        frame.size.width = [width floatValue] / 100 * rootView.frame.size.width;
+//        frame.size.width = [width floatValue] / 100 * rootView.frame.size.width;
     }
     else {
         frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];

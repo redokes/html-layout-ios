@@ -22,6 +22,7 @@
 		E47A5C5015DE90DA000B85F5 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C4F15DE90DA000B85F5 /* UIColor+CreateMethods.m */; };
 		E47A5C5215DE9136000B85F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */; };
 		F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */; };
+		E47A5C5615DE98D5000B85F5 /* HtmlViewParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		F5FCCE7415DE9EA30075AB8E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		E47A5C5415DE98D5000B85F5 /* HtmlViewParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlViewParser.h; sourceTree = "<group>"; };
+		E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlViewParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				E47A5C3B15DE9018000B85F5 /* HtmlViewController.m */,
 				E47A5C3C15DE9018000B85F5 /* UIFlexibleView.h */,
 				E47A5C3D15DE9018000B85F5 /* UIFlexibleView.m */,
+				E47A5C5415DE98D5000B85F5 /* HtmlViewParser.h */,
+				E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				E47A5C4A15DE9018000B85F5 /* XPathQuery.m in Sources */,
 				E47A5C5015DE90DA000B85F5 /* UIColor+CreateMethods.m in Sources */,
 				F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */,
+				E47A5C5615DE98D5000B85F5 /* HtmlViewParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

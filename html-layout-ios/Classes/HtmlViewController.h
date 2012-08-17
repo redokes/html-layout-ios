@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 
 //Classes needed
+@class HtmlViewParser;
 @class TFHppleElement;
 
 @interface HtmlViewController : UIViewController
 
+@property (nonatomic) NSString *layoutPath;
+@property (nonatomic) HtmlViewParser *htmlViewParser;
 @property UIButton *refreshButton;
 @property UIToolbar *toolbar;
-@property UIView *rootView;
-@property TFHppleElement *rootElement;
+
+- (id)initWithLayoutPath:(NSString *)path;
 
 @end

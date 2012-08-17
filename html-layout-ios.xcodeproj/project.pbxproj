@@ -21,6 +21,7 @@
 		E47A5C4C15DE907D000B85F5 /* layout.html in Resources */ = {isa = PBXBuildFile; fileRef = E47A5C4B15DE907D000B85F5 /* layout.html */; };
 		E47A5C5015DE90DA000B85F5 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C4F15DE90DA000B85F5 /* UIColor+CreateMethods.m */; };
 		E47A5C5215DE9136000B85F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */; };
+		F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		E47A5C4E15DE90DA000B85F5 /* UIColor+CreateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CreateMethods.h"; sourceTree = "<group>"; };
 		E47A5C4F15DE90DA000B85F5 /* UIColor+CreateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CreateMethods.m"; sourceTree = "<group>"; };
 		E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		F5FCCE7415DE9EA30075AB8E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 			children = (
 				E47A5C4E15DE90DA000B85F5 /* UIColor+CreateMethods.h */,
 				E47A5C4F15DE90DA000B85F5 /* UIColor+CreateMethods.m */,
+				F5FCCE7415DE9EA30075AB8E /* NSString+Util.h */,
+				F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				E47A5C4915DE9018000B85F5 /* TFHppleElement.m in Sources */,
 				E47A5C4A15DE9018000B85F5 /* XPathQuery.m in Sources */,
 				E47A5C5015DE90DA000B85F5 /* UIColor+CreateMethods.m in Sources */,
+				F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

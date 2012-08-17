@@ -105,6 +105,12 @@
     frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
     [view setFrame:frame];
     
+    // Process the children
+    for (TFHppleElement *childElement in element.children) {
+        UIView *childView = [self createViewFromElement:childElement];
+        [view addSubview:childView];
+    }
+    
     //Return the view
     return view;
 }
@@ -113,7 +119,7 @@
 {
     NSLog(@"View did load");
     [super viewDidLoad];
-    [self initSubviews];
+//    [self initSubviews];
     [toolbar setBarStyle:UIBarStyleBlack];
     //[self.view addSubview:refreshButton];
 }

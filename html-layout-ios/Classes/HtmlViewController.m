@@ -10,8 +10,6 @@
 #import "TFHpple.h"
 #import "TFHppleElement.h"
 #import "UIColor+CreateMethods.h"
-#import "UIFlexibleView.h"
-#import "NSString+Util.h"
 #import "HtmlViewParser.h"
 
 @interface HtmlViewController ()
@@ -52,7 +50,7 @@
 - (void)initHtmlViewParser
 {
     htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
-    NSLog(@"%@", layoutPath);
+//    NSLog(@"%@", layoutPath);
     [htmlViewParser parse];
 }
 
@@ -60,79 +58,6 @@
 {
     self.view = htmlViewParser.rootView;
 }
-
-- (UIView *)createViewFromElement:(TFHppleElement *)element
-{
-    //Create the view from the views class attribute
-    UIView *view = [[NSClassFromString([element objectForKey:@"class"]) alloc] init];
-    
-    //Set the property
-    if ([element objectForKey:@"property"] != nil) {
-        NSString *property = [element objectForKey:@"property"];
-        property = [property stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[property substringToIndex:1] uppercaseString]];
-        NSString *selectorString = [NSString stringWithFormat:@"set%@:", property];
-        NSLog(@"%@", selectorString);
-        SEL propertySelector = NSSelectorFromString(selectorString);
-        if ([self respondsToSelector:propertySelector]) {
-            [self performSelector:propertySelector withObject:view];
-        }
-    }
-    
-    //Set the background color if necessary
-    if ([element objectForKey:@"background-color"] != nil) {
-        UIColor *backgroundColor = [UIColor colorWithHex:[element objectForKey:@"background-color"] alpha:1.0f];
-        [view setBackgroundColor:backgroundColor];
-    }
-    
-    //Set the frame
-    CGRect frame = view.frame;
-    NSString *width = [element objectForKey:@"width"];
-    if ([width contains:@"%"]) {
-//        frame.size.width = [width floatValue] / 100 * rootView.frame.size.width;
-    }
-    else {
-        frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
-    }
-    
-    frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
-    frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
-    frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
-    [view setFrame:frame];
-    
-    
-    SEL processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", [view class]]);
-    if ([self respondsToSelector:processChildrenSelector]) {
-        [self performSelector:processChildrenSelector withObject:element.children withObject:view];
-    }
-    
-    //Return the view
-    return view;
-}
-
-- (void)processChildren:(NSArray *)children forUIView:(UIView *)view
-{
-    // Process the children
-    for (TFHppleElement *childElement in children) {
-        UIView *childView = [self createViewFromElement:childElement];
-        [view addSubview:childView];
-    }
-}
-
-- (void)processChildren:(NSArray *)children forUIFlexibleView:(UIFlexibleView *)view
-{
-    // Process the children
-    for (TFHppleElement *childElement in children) {
-        UIView *childView = [self createViewFromElement:childElement];
-        
-        // Check for flex
-        [view addItem:childView withFlex:1];
-        if ([childElement objectForKey:@"flex"] != nil) {
-            
-        }
-
-    }
-}
-
 
 - (void)viewDidLoad
 {

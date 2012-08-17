@@ -22,6 +22,7 @@
 @synthesize layoutPath;
 @synthesize htmlViewParser;
 @synthesize refreshButton;
+@synthesize layoutUrl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +36,16 @@
 - (id)initWithLayoutPath:(NSString *)path
 {
     layoutPath = path;
+    self = [self initWithNibName:nil bundle:nil];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (id)initWithLayoutUrl:(NSString *)path
+{
+    layoutUrl = path;
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         
@@ -68,13 +79,32 @@
 - (void)loadView
 {
     [super loadView];
-    [htmlViewParser parse:[NSData dataWithContentsOfFile:self.layoutPath]];
+    if (self.layoutPath != nil) {
+        [htmlViewParser parse:[NSData dataWithContentsOfFile:self.layoutPath]];
+    }
+    else if (self.layoutUrl != nil) {
+        NSURL *url = [NSURL URLWithString:self.layoutUrl];
+        [htmlViewParser parse:[NSData dataWithContentsOfURL:url]];
+    }
+    
     self.view = htmlViewParser.rootView;
 }
 
 - (void)refreshView
 {
-    
+    [self loadView];
+    [self viewDidLoad];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.view addSubview:refreshButton];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
 }
 
 @end

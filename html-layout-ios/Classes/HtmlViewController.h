@@ -16,10 +16,12 @@
 @interface HtmlViewController : UIViewController
 
 @property (nonatomic) NSString *layoutPath;
+@property (nonatomic) NSString *layoutUrl;
 @property (nonatomic) HtmlViewParser *htmlViewParser;
 @property (nonatomic) UIButton *refreshButton;
 
 - (id)initWithLayoutPath:(NSString *)path;
+- (id)initWithLayoutUrl:(NSString *)path;
 - (void)initComponent;
 
 @end

@@ -9,7 +9,7 @@
 #import "HtmlViewController.h"
 #import "TFHpple.h"
 #import "TFHppleElement.h"
-#import "UIColor+CreateMethods.h"
+#import "HtmlViewParser.h"
 
 @interface HtmlViewController ()
 
@@ -17,6 +17,8 @@
 
 @implementation HtmlViewController
 
+@synthesize layoutPath;
+@synthesize htmlViewParser;
 @synthesize rootView;
 @synthesize rootElement;
 @synthesize refreshButton;
@@ -31,84 +33,29 @@
     return self;
 }
 
+- (id)initWithLayoutPath:(NSString *)path
+{
+    layoutPath = path;
+    self = [self initWithNibName:nil bundle:nil];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)initComponent
 {
-    [self initRootView];
+    [self initHtmlViewParser];
 }
 
-- (void)initRootView
+- (void)initHtmlViewParser
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
-    rootElement = [elements objectAtIndex:0];
-    rootView = [self createViewFromElement:rootElement];
-
-}
-
-- (void)initSubviews
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-    NSArray *elements = [doc searchWithXPathQuery:@"//body/view/*"];
-    for (TFHppleElement *element in elements) {
-        UIView *view = [self createViewFromElement:element];
-        [self.view addSubview:view];
-     }
-}
-
-- (void)refreshView
-{
-    [self loadView];
-    [self viewDidLoad];
+    htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
 }
 
 - (void)loadView
 {
-    self.view = rootView;
-}
-
-- (UIView *)createViewFromElement:(TFHppleElement *)element
-{
-    //Create the view from the views class attribute
-    UIView *view = [[NSClassFromString([element objectForKey:@"class"]) alloc] init];
-    
-    //Set the property
-    if ([element objectForKey:@"property"] != nil) {
-        NSString *property = [element objectForKey:@"property"];
-        property = [property stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[property substringToIndex:1] uppercaseString]];
-        NSString *selectorString = [NSString stringWithFormat:@"set%@:", property];
-        NSLog(@"%@", selectorString);
-        SEL propertySelector = NSSelectorFromString(selectorString);
-        if ([self respondsToSelector:propertySelector]) {
-            [self performSelector:propertySelector withObject:view];
-        }
-    }
-    
-    //Set the background color if necessary
-    if ([element objectForKey:@"background-color"] != nil) {
-        UIColor *backgroundColor = [UIColor colorWithHex:[element objectForKey:@"background-color"] alpha:1.0f];
-        [view setBackgroundColor:backgroundColor];
-    }
-    
-    //Set the frame
-    CGRect frame = view.frame;
-    frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
-    frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
-    frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
-    frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
-    [view setFrame:frame];
-    
-    // Process the children
-    for (TFHppleElement *childElement in element.children) {
-        UIView *childView = [self createViewFromElement:childElement];
-        [view addSubview:childView];
-    }
-    
-    //Return the view
-    return view;
+    //self.view = rootView;
 }
 
 - (void)viewDidLoad

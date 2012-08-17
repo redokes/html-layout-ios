@@ -16,7 +16,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[HtmlViewController alloc] init];
+    
+    //Create the view controller
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"layout" ofType:@"html"];
+    HtmlViewController *htmlView = [[HtmlViewController alloc] initWithLayoutPath:path];
+    self.window.rootViewController = htmlView;
     
     [self.window makeKeyAndVisible];
     return YES;

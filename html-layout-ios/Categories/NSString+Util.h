@@ -11,5 +11,7 @@
 @interface NSString (Util)
 
 - (BOOL)contains:(NSString *)subStr;
+- (NSString *)capitalize;
+
 
 @end

@@ -48,13 +48,26 @@
 //////////////////////////////////////////////////////////
 //  Mutators
 //////////////////////////////////////////////////////////
+- (void)setTypeFromString:(NSString *)typeName
+{
+    [self setType:[typeName intValue]];
+}
+
 - (void)setType:(UIFlexibleViewType)newType
 {
+    NSLog(@"set type %d", newType);
     if (type == newType) {
         return;
     }
     type = newType;
     [self setNeedsLayout];
+}
+
+- (void)setAlignFromString:(NSString *)alignString
+{
+    if ([alignString isEqualToString:@"middle"]) {
+        [self setAlign:UIFlexibleViewAlignMiddle];
+    }
 }
 
 - (void)setAlign:(UIFlexibleViewAlign)newAlign
@@ -64,6 +77,13 @@
     }
     align = newAlign;
     [self setNeedsLayout];
+}
+
+- (void)setPackFromString:(NSString *)packString
+{
+    if ([packString isEqualToString:@"center"]) {
+        [self setPack:UIFlexibleViewAlignStretch];
+    }
 }
 
 - (void)setPack:(UIFlexibleViewPack)newPack

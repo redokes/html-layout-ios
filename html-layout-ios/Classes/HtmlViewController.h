@@ -19,7 +19,6 @@
 @property (nonatomic) HtmlViewParser *htmlViewParser;
 @property UIButton *refreshButton;
 @property UIToolbar *toolbar;
-@property (nonatomic) UIFlexibleView *rootView;
 
 - (id)initWithLayoutPath:(NSString *)path;
 

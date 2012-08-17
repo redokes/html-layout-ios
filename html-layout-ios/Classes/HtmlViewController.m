@@ -23,7 +23,6 @@
 @synthesize htmlViewParser;
 @synthesize refreshButton;
 @synthesize toolbar;
-@synthesize rootView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,8 +64,6 @@
 {
     [super viewDidLoad];
     [toolbar setBarStyle:UIBarStyleBlack];
-    [rootView setType:UIFlexibleViewTypeVertical];
-    [rootView setAlign:UIFlexibleViewAlignStretch];
     //[self.view addSubview:refreshButton];
 }
 

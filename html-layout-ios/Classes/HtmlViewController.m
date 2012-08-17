@@ -11,6 +11,7 @@
 #import "TFHppleElement.h"
 #import "UIColor+CreateMethods.h"
 #import "HtmlViewParser.h"
+#import "UIFlexibleView.h"
 
 @interface HtmlViewController ()
 
@@ -22,6 +23,7 @@
 @synthesize htmlViewParser;
 @synthesize refreshButton;
 @synthesize toolbar;
+@synthesize rootView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +66,8 @@
     NSLog(@"View did load");
     [super viewDidLoad];
     [toolbar setBarStyle:UIBarStyleBlack];
+    [rootView setType:UIFlexibleViewTypeVertical];
+    [rootView setAlign:UIFlexibleViewAlignStretch];
     //[self.view addSubview:refreshButton];
 }
 

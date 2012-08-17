@@ -1,5 +1,8 @@
-<view class="UIFlexibleView" background-color="#dddddd" type="1" pack="center" align="middle">
-    <view class="UIView" flex="1" width="20" background-color="#0000ff"></view>
-    <view class="UIView" flex="1" width="20" background-color="#00ff00"></view>
-    <view class="UIView" flex="1" width="20" background-color="#ff0000"></view>
+<view class="UIFlexibleView" background-color="#dddddd" type="vbox" pack="center" align="stretch">
+    <view class="UIToolbar" flex="0" width="50" height="44" background-color="#0000ff"></view>
+    <view class="UIFlexibleView" type="vbox" align="stretch" flex="1">
+        <view class="UIWebView" property="webView" flex="2" width="50" height="50"></view>
+        <view class="UIWebView" property="webView2" flex="1" width="50" height="50"></view>
+    </view>
+    <view class="UIToolbar" flex="0" width="50" height="44" background-color="#ff0000"></view>
 </view>

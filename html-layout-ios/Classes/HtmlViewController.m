@@ -22,7 +22,7 @@
 @synthesize layoutPath;
 @synthesize htmlViewParser;
 @synthesize refreshButton;
-@synthesize toolbar;
+@synthesize webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,7 +51,6 @@
 - (void)initHtmlViewParser
 {
     htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
-//    NSLog(@"%@", layoutPath);
     [htmlViewParser parse];
 }
 
@@ -63,8 +62,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [toolbar setBarStyle:UIBarStyleBlack];
-    //[self.view addSubview:refreshButton];
+    
+    //Load web view data
+    NSString *strWebsiteUlr = [NSString stringWithFormat:@"http://www.nooga.com"];
+    
+    // Load URL
+    
+    //Create a URL object.
+    NSURL *url = [NSURL URLWithString:strWebsiteUlr];
+    
+    //URL Requst Object
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    //Load the request in the UIWebView.
+    [webView loadRequest:requestObj];
 }
 
 - (void)viewDidUnload

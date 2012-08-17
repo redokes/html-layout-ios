@@ -18,7 +18,7 @@
 @property (nonatomic) NSString *layoutPath;
 @property (nonatomic) HtmlViewParser *htmlViewParser;
 @property UIButton *refreshButton;
-@property UIToolbar *toolbar;
+@property UIWebView *webView;
 
 - (id)initWithLayoutPath:(NSString *)path;
 

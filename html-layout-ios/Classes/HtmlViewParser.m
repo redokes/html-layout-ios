@@ -146,12 +146,17 @@
     for (TFHppleElement *childElement in children) {
         UIView *childView = [self createViewFromElement:childElement withParentView:view];
         
+        //Get a default config
+        NSMutableDictionary *config = [[view getDefaultConfig] mutableCopy];
+        
         // Check for flex
-        [view addItem:childView withFlex:1];
         if ([childElement objectForKey:@"flex"] != nil) {
-            
+            NSString *flex = [childElement objectForKey:@"flex"];
+            [config setObject:[NSNumber numberWithInt:[flex intValue]] forKey:@"flex"];
         }
         
+        //Add item
+        [view addItem:childView withFlex:[(NSNumber *)[config objectForKey:@"flex"] intValue] andMargin:[(NSValue *)[config objectForKey:@"margin"] CGRectValue]];
     }
 }
 

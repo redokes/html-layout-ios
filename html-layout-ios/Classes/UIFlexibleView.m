@@ -50,12 +50,16 @@
 //////////////////////////////////////////////////////////
 - (void)setTypeFromString:(NSString *)typeName
 {
-    [self setType:[typeName intValue]];
+    if ([typeName isEqualToString:@"hbox"]) {
+        [self setType:UIFlexibleViewTypeHorizontal];
+    }
+    if ([typeName isEqualToString:@"vbox"]) {
+        [self setType:UIFlexibleViewTypeVertical];
+    }
 }
 
 - (void)setType:(UIFlexibleViewType)newType
 {
-    NSLog(@"set type %d", newType);
     if (type == newType) {
         return;
     }
@@ -65,8 +69,17 @@
 
 - (void)setAlignFromString:(NSString *)alignString
 {
+    if ([alignString isEqualToString:@"top"]) {
+        [self setAlign:UIFlexibleViewAlignTop];
+    }
     if ([alignString isEqualToString:@"middle"]) {
         [self setAlign:UIFlexibleViewAlignMiddle];
+    }
+    if ([alignString isEqualToString:@"stretch"]) {
+        [self setAlign:UIFlexibleViewAlignStretch];
+    }
+    if ([alignString isEqualToString:@"stretchmax"]) {
+        [self setAlign:UIFlexibleViewAlignStretchMax];
     }
 }
 
@@ -81,8 +94,14 @@
 
 - (void)setPackFromString:(NSString *)packString
 {
+    if ([packString isEqualToString:@"start"]) {
+        [self setPack:UIFlexibleViewPackStart];
+    }
     if ([packString isEqualToString:@"center"]) {
-        [self setPack:UIFlexibleViewAlignStretch];
+        [self setPack:UIFlexibleViewPackCenter];
+    }
+    if ([packString isEqualToString:@"end"]) {
+        [self setPack:UIFlexibleViewPackEnd];
     }
 }
 

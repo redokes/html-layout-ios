@@ -95,16 +95,10 @@
 {
     for (NSString *attributeItem in element.attributes) {
         NSString *attribute = [attributeItem capitalize];
-        NSString *selectorString = [NSString stringWithFormat:@"set%@:", attribute];
+        NSString *selectorString = [NSString stringWithFormat:@"set%@FromString:", attribute];
         SEL propertySelector = NSSelectorFromString(selectorString);
         if ([view respondsToSelector:propertySelector]) {
-            
-            
-            NSMethodSignature *signature = [[view class] instanceMethodSignatureForSelector:propertySelector];
-//            NSLog(@"%s", @encode(NSUInteger));
-//            NSLog(@"%s", [signature getArgumentTypeAtIndex:0]);
-//            NSLog(@"%d", strcmp(@encode(NSUInteger), [signature getArgumentTypeAtIndex:0]));
-//            [viewController performSelector:propertySelector withObject:view];
+            [view performSelector:propertySelector withObject:[element.attributes objectForKey:attributeItem]];
         }
     }
 }

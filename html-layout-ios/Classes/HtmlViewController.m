@@ -62,6 +62,7 @@
 {
     NSLog(@"View did load");
     [super viewDidLoad];
+    NSLog(@"%f", self.view.bounds.size.width);
 //    [self initSubviews];
     [toolbar setBarStyle:UIBarStyleBlack];
     //[self.view addSubview:refreshButton];

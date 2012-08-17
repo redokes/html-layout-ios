@@ -149,6 +149,38 @@
         //Get a default config
         NSMutableDictionary *config = [[view getDefaultConfig] mutableCopy];
         
+        // Check for margin
+        CGRect margin = CGRectMake(0, 0, 0, 0);
+        if ([childElement objectForKey:@"margin"] != nil) {
+            NSArray *marginParts = [[childElement objectForKey:@"margin"] componentsSeparatedByString:@" "];
+            int numParts = [marginParts count];
+            int marginTop = [[marginParts objectAtIndex:0] intValue];
+            int marginRight = 0;
+            int marginBottom = 0;
+            int marginLeft = 0;
+            switch (numParts) {
+                case 1:
+                    marginRight = marginBottom = marginLeft = marginTop;
+                    break;
+                case 2:
+                    marginBottom = marginTop;
+                    marginRight = marginLeft = [[marginParts objectAtIndex:1] intValue];
+                    break;
+                case 3:
+                    marginRight = marginLeft = [[marginParts objectAtIndex:1] intValue];
+                    marginBottom = [[marginParts objectAtIndex:2] intValue];
+                    break;
+                case 4:
+                    marginRight = [[marginParts objectAtIndex:1] intValue];
+                    marginBottom = [[marginParts objectAtIndex:2] intValue];
+                    marginLeft = [[marginParts objectAtIndex:3] intValue];
+                    break;
+            }
+            
+            margin = CGRectMake(marginLeft, marginTop, marginRight, marginBottom);
+            [config setObject:[NSValue valueWithCGRect:margin] forKey:@"margin"];
+        }
+        
         // Check for flex
         if ([childElement objectForKey:@"flex"] != nil) {
             NSString *flex = [childElement objectForKey:@"flex"];

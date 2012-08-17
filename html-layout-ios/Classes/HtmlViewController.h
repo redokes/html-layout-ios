@@ -11,6 +11,7 @@
 //Classes needed
 @class HtmlViewParser;
 @class TFHppleElement;
+@class UIFlexibleView;
 
 @interface HtmlViewController : UIViewController
 
@@ -18,6 +19,7 @@
 @property (nonatomic) HtmlViewParser *htmlViewParser;
 @property UIButton *refreshButton;
 @property UIToolbar *toolbar;
+@property (nonatomic) UIFlexibleView *rootView;
 
 - (id)initWithLayoutPath:(NSString *)path;
 

@@ -9,7 +9,9 @@
 #import "HtmlViewController.h"
 #import "TFHpple.h"
 #import "TFHppleElement.h"
+#import "UIColor+CreateMethods.h"
 #import "HtmlViewParser.h"
+#import "UIFlexibleView.h"
 
 @interface HtmlViewController ()
 
@@ -21,6 +23,7 @@
 @synthesize htmlViewParser;
 @synthesize refreshButton;
 @synthesize toolbar;
+@synthesize rootView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +52,7 @@
 - (void)initHtmlViewParser
 {
     htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
-    NSLog(@"%@", layoutPath);
+//    NSLog(@"%@", layoutPath);
     [htmlViewParser parse];
 }
 
@@ -60,11 +63,10 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"View did load");
     [super viewDidLoad];
-    NSLog(@"%f", self.view.bounds.size.width);
-//    [self initSubviews];
     [toolbar setBarStyle:UIBarStyleBlack];
+    [rootView setType:UIFlexibleViewTypeVertical];
+    [rootView setAlign:UIFlexibleViewAlignStretch];
     //[self.view addSubview:refreshButton];
 }
 

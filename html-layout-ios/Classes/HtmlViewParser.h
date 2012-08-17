@@ -19,5 +19,5 @@
 @property TFHppleElement *rootElement;
 
 - (id)initWithViewController:(HtmlViewController *)htmlViewController;
-- (void)parse;
+- (void)parse:(NSData *)data;
 @end

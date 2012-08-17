@@ -29,10 +29,8 @@
     return self;
 }
 
-- (void)parse
+- (void)parse:(NSData *)data
 {
-    NSData *data = [NSData dataWithContentsOfFile:viewController.layoutPath];
-//    NSLog(@"%@", data);
     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
     rootElement = [elements objectAtIndex:0];

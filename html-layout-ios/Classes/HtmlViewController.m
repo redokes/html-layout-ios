@@ -22,7 +22,6 @@
 @synthesize layoutPath;
 @synthesize htmlViewParser;
 @synthesize refreshButton;
-@synthesize webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,47 +45,36 @@
 - (void)initComponent
 {
     [self initHtmlViewParser];
+    [self initRefreshButton];
 }
 
 - (void)initHtmlViewParser
 {
     htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
-    [htmlViewParser parse];
+}
+
+- (void)initRefreshButton
+{
+    refreshButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [refreshButton setTitle:@"Refresh" forState:UIControlStateNormal];
+    [refreshButton sizeToFit];
+    [refreshButton addTarget:self action:@selector(refreshView) forControlEvents:UIControlEventTouchUpInside];
+    CGRect frame = refreshButton.frame;
+    frame.origin.x = 5;
+    frame.origin.y = 5;
+    [refreshButton setFrame:frame];
 }
 
 - (void)loadView
 {
+    [super loadView];
+    [htmlViewParser parse:[NSData dataWithContentsOfFile:self.layoutPath]];
     self.view = htmlViewParser.rootView;
 }
 
-- (void)viewDidLoad
+- (void)refreshView
 {
-    [super viewDidLoad];
     
-    //Load web view data
-    NSString *strWebsiteUlr = [NSString stringWithFormat:@"http://www.nooga.com"];
-    
-    // Load URL
-    
-    //Create a URL object.
-    NSURL *url = [NSURL URLWithString:strWebsiteUlr];
-    
-    //URL Requst Object
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    
-    //Load the request in the UIWebView.
-    [webView loadRequest:requestObj];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

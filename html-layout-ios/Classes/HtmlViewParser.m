@@ -11,6 +11,8 @@
 #import "TFHpple.h"
 #import "TFHppleElement.h"
 #import "UIColor+CreateMethods.h"
+#import "UIFlexibleView.h"
+#import "NSString+Util.h"
 
 @implementation HtmlViewParser
 
@@ -30,7 +32,7 @@
 - (void)parse
 {
     NSData *data = [NSData dataWithContentsOfFile:viewController.layoutPath];
-    NSLog(@"%@", data);
+//    NSLog(@"%@", data);
     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
     NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
     rootElement = [elements objectAtIndex:0];
@@ -46,15 +48,14 @@
     [self applyProperty:view fromElement:element];
     
     //Set the background color if necessary
-    //[self applyBackgroundColor:view fromElement:element];
+    [self applyBackgroundColor:view fromElement:element];
     
     //Set the frame
     [self applyFrame:view fromElement:element];
     
-    // Process the children
-    for (TFHppleElement *childElement in element.children) {
-        UIView *childView = [self createViewFromElement:childElement];
-        [view addSubview:childView];
+    SEL processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", [view class]]);
+    if ([self respondsToSelector:processChildrenSelector]) {
+        [self performSelector:processChildrenSelector withObject:element.children withObject:view];
     }
     
     //Return the view
@@ -78,7 +79,7 @@
 
 - (void)applyBackgroundColor:(UIView *)view fromElement:(TFHppleElement *)element
 {
-    if ([element objectForKey:@"background-color"] != nil) {
+    if ([element objectForKey:@"background-color"] == nil) {
         return;
     }
     
@@ -89,11 +90,45 @@
 - (void)applyFrame:(UIView *)view fromElement:(TFHppleElement *)element
 {
     CGRect frame = view.frame;
+    
+    // Apply width
+    NSString *width = [element objectForKey:@"width"];
+    if ([width contains:@"%"]) {
+//      frame.size.width = [width floatValue] / 100 * rootView.frame.size.width;
+    }
+    else {
+        frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
+    }
     frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
     frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
     frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
     frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
     [view setFrame:frame];
 }
+
+- (void)processChildren:(NSArray *)children forUIView:(UIView *)view
+{
+    // Process the children
+    for (TFHppleElement *childElement in children) {
+        UIView *childView = [self createViewFromElement:childElement];
+        [view addSubview:childView];
+    }
+}
+
+- (void)processChildren:(NSArray *)children forUIFlexibleView:(UIFlexibleView *)view
+{
+    // Process the children
+    for (TFHppleElement *childElement in children) {
+        UIView *childView = [self createViewFromElement:childElement];
+        
+        // Check for flex
+        [view addItem:childView withFlex:1];
+        if ([childElement objectForKey:@"flex"] != nil) {
+            
+        }
+        
+    }
+}
+
 
 @end

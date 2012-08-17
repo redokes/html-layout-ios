@@ -43,6 +43,7 @@
     animate = NO;
     items = [[NSMutableArray alloc] init];
     configs = [[NSMutableDictionary alloc] init];
+    [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 }
 
 //////////////////////////////////////////////////////////
@@ -248,7 +249,7 @@
 - (void)layoutHorizontal
 {
     int itemCount = items.count;
-    CGRect viewSize = self.frame;
+    CGRect viewSize = self.bounds;
     float availableWidth = viewSize.size.width;
     float flexWidth = availableWidth;
     float x = 0;
@@ -360,7 +361,7 @@
 - (void)layoutVertical
 {
     int itemCount = items.count;
-    CGRect viewSize = self.frame;
+    CGRect viewSize = self.bounds;
     float availableHeight = viewSize.size.height;
     float flexHeight = availableHeight;
     float x = 0;

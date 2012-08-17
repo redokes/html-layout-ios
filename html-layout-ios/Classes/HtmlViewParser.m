@@ -29,11 +29,12 @@
 
 - (void)parse
 {
-     NSData *data = [NSData dataWithContentsOfFile:viewController.layoutPath];
-     TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
-     NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
-     rootElement = [elements objectAtIndex:0];
-     //rootView = [self createViewFromElement:rootElement];
+    NSData *data = [NSData dataWithContentsOfFile:viewController.layoutPath];
+    NSLog(@"%@", data);
+    TFHpple *doc = [[TFHpple alloc] initWithHTMLData:data];
+    NSArray *elements = [doc searchWithXPathQuery:@"//body/view"];
+    rootElement = [elements objectAtIndex:0];
+    rootView = [self createViewFromElement:rootElement];
 }
 
 - (UIView *)createViewFromElement:(TFHppleElement *)element
@@ -41,31 +42,14 @@
     //Create the view from the views class attribute
     UIView *view = [[NSClassFromString([element objectForKey:@"class"]) alloc] init];
     
-    //Set the property
-    if ([element objectForKey:@"property"] != nil) {
-        NSString *property = [element objectForKey:@"property"];
-        property = [property stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[property substringToIndex:1] uppercaseString]];
-        NSString *selectorString = [NSString stringWithFormat:@"set%@:", property];
-        NSLog(@"%@", selectorString);
-        SEL propertySelector = NSSelectorFromString(selectorString);
-        if ([self respondsToSelector:propertySelector]) {
-            [self performSelector:propertySelector withObject:view];
-        }
-    }
+    //Apply the propery
+    [self applyProperty:view fromElement:element];
     
     //Set the background color if necessary
-    if ([element objectForKey:@"background-color"] != nil) {
-        UIColor *backgroundColor = [UIColor colorWithHex:[element objectForKey:@"background-color"] alpha:1.0f];
-        [view setBackgroundColor:backgroundColor];
-    }
+    //[self applyBackgroundColor:view fromElement:element];
     
     //Set the frame
-    CGRect frame = view.frame;
-    frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
-    frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
-    frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
-    frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
-    [view setFrame:frame];
+    [self applyFrame:view fromElement:element];
     
     // Process the children
     for (TFHppleElement *childElement in element.children) {
@@ -75,6 +59,41 @@
     
     //Return the view
     return view;
+}
+
+///////////////////////////////////////////////////
+//  Apply Methods
+//////////////////////////////////////////////////
+- (void)applyProperty:(UIView *)view fromElement:(TFHppleElement *)element
+{
+    //Set the property
+    NSString *property = [element objectForKey:@"property"];
+    property = [property stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[property substringToIndex:1] uppercaseString]];
+    NSString *selectorString = [NSString stringWithFormat:@"set%@:", property];
+    SEL propertySelector = NSSelectorFromString(selectorString);
+    if ([viewController respondsToSelector:propertySelector]) {
+        [viewController performSelector:propertySelector withObject:view];
+    }
+}
+
+- (void)applyBackgroundColor:(UIView *)view fromElement:(TFHppleElement *)element
+{
+    if ([element objectForKey:@"background-color"] != nil) {
+        return;
+    }
+    
+    UIColor *backgroundColor = [UIColor colorWithHex:[element objectForKey:@"background-color"] alpha:1.0f];
+    [view setBackgroundColor:backgroundColor];
+}
+
+- (void)applyFrame:(UIView *)view fromElement:(TFHppleElement *)element
+{
+    CGRect frame = view.frame;
+    frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
+    frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
+    frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
+    frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
+    [view setFrame:frame];
 }
 
 @end

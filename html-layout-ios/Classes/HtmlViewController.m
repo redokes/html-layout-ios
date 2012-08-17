@@ -19,8 +19,6 @@
 
 @synthesize layoutPath;
 @synthesize htmlViewParser;
-@synthesize rootView;
-@synthesize rootElement;
 @synthesize refreshButton;
 @synthesize toolbar;
 
@@ -51,11 +49,13 @@
 - (void)initHtmlViewParser
 {
     htmlViewParser = [[HtmlViewParser alloc] initWithViewController:self];
+    NSLog(@"%@", layoutPath);
+    [htmlViewParser parse];
 }
 
 - (void)loadView
 {
-    //self.view = rootView;
+    self.view = htmlViewParser.rootView;
 }
 
 - (void)viewDidLoad

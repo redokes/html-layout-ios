@@ -59,6 +59,8 @@ typedef NSUInteger UIFlexibleViewType;
 - (void)addItem:(UIView *)view withFlex:(int)flex andMargin:(CGRect)margin replaceItem:(UIView *)replaceView;
 - (void)removeItem:(UIView *)view;
 - (void)removeAll;
+- (float)getTotalHeight;
+- (float)getTotalWidth;
 
 - (void)setTypeFromString:(NSString *)typeName;
 - (void)setType:(UIFlexibleViewType)newType;

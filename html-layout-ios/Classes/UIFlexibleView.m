@@ -125,6 +125,18 @@
 //////////////////////////////////////////////////////////
 //  Methods
 //////////////////////////////////////////////////////////
+- (NSArray *)getVisibleItems
+{
+    NSMutableArray *visibleItems = [[NSMutableArray alloc] init];
+    for (UIView *view in items) {
+        if (view.hidden == YES) {
+            continue;
+        }
+        [visibleItems addObject:view];
+    }
+    return visibleItems;
+}
+
 - (NSDictionary *)getConfig:(UIView *)view
 {
     if ([configs objectForKey:[NSValue valueWithNonretainedObject:view]] != nil) {
@@ -213,6 +225,30 @@
     [self setNeedsLayout];
 }
 
+- (float)getTotalHeight
+{
+    float height = 0.0f;
+    for (UIView *view in [self getVisibleItems]) {
+        NSDictionary *config = [self getConfig:view];
+        NSValue *marginValue = [config objectForKey:@"margin"];
+        CGRect margin = [marginValue CGRectValue];
+        height += view.frame.size.height + margin.origin.y + margin.size.height;
+    }
+    return height;
+}
+
+- (float)getTotalWidth
+{
+    float width = 0.0f;
+    for (UIView *view in [self getVisibleItems]) {
+        NSDictionary *config = [self getConfig:view];
+        NSValue *marginValue = [config objectForKey:@"margin"];
+        CGRect margin = [marginValue CGRectValue];
+        width += view.frame.size.width + margin.origin.x + margin.size.width;
+    }
+    return width;
+}
+
 //////////////////////////////////////////////////////////
 //  Layout Methods
 //////////////////////////////////////////////////////////
@@ -248,7 +284,8 @@
 
 - (void)layoutHorizontal
 {
-    int itemCount = items.count;
+    NSArray *views = [self getVisibleItems];
+    int itemCount = views.count;
     CGRect viewSize = self.bounds;
     float availableWidth = viewSize.size.width;
     float flexWidth = availableWidth;
@@ -263,7 +300,7 @@
     //Compute all information about the items
     for (i = 0; i < itemCount; i++){
         //Get the item
-        UIView *view = [items objectAtIndex:i];
+        UIView *view = [views objectAtIndex:i];
         
         //Get the item config
         NSDictionary *config = [self getConfig:view];
@@ -310,7 +347,7 @@
     //Draw all the items in this view
     for (i = 0; i < itemCount; i++){
         //Get the view
-        UIView *view = [items objectAtIndex:i];
+        UIView *view = [views objectAtIndex:i];
         
         //Get the item config
         NSDictionary *config = [self getConfig:view];
@@ -329,14 +366,14 @@
         int itemWidth = 0;
         if(flex > 0){
             float flexRatio = (flex / (float)totalFlex);
-            itemWidth = (int)floor((flexWidth * flexRatio));
+            itemWidth = (int)ceil((flexWidth * flexRatio));
         }
         else{
             itemWidth = frame.size.width;
         }
         
         //Compute the item height
-        int itemHeight = frame.size.height;
+        float itemHeight = frame.size.height;
         if(self.align == UIFlexibleViewAlignStretch){
             itemHeight = self.bounds.size.height - margin.origin.y - margin.size.height;
         }
@@ -360,7 +397,8 @@
 
 - (void)layoutVertical
 {
-    int itemCount = items.count;
+    NSArray *views = [self getVisibleItems];
+    int itemCount = views.count;
     CGRect viewSize = self.bounds;
     float availableHeight = viewSize.size.height;
     float flexHeight = availableHeight;
@@ -375,7 +413,7 @@
     //Compute all information about the items
     for (i = 0; i < itemCount; i++){
         //Get the item
-        UIView *view = [items objectAtIndex:i];
+        UIView *view = [views objectAtIndex:i];
         
         //Get the item config
         NSDictionary *config = [self getConfig:view];
@@ -422,7 +460,7 @@
     //Draw all the items in this view
     for (i = 0; i < itemCount; i++){
         //Get the view
-        UIView *view = [items objectAtIndex:i];
+        UIView *view = [views objectAtIndex:i];
         
         //Get the item config
         NSDictionary *config = [self getConfig:view];
@@ -441,7 +479,7 @@
         int itemHeight = 0;
         if(flex > 0){
             float flexRatio = (flex / (float)totalFlex);
-            itemHeight = (int)floor((flexHeight * flexRatio));
+            itemHeight = (int)ceil((flexHeight * flexRatio));
         }
         else{
             itemHeight = frame.size.height;

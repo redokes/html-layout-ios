@@ -15,6 +15,7 @@
 
 @interface HtmlViewController : UIViewController
 
+@property (nonatomic) BOOL debug;
 @property (nonatomic) NSString *layoutPath;
 @property (nonatomic) NSString *layoutUrl;
 @property (nonatomic) HtmlViewParser *htmlViewParser;

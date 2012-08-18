@@ -19,6 +19,7 @@
 
 @implementation HtmlViewController
 
+@synthesize debug;
 @synthesize layoutPath;
 @synthesize htmlViewParser;
 @synthesize refreshButton;
@@ -99,7 +100,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:refreshButton];
+    if (debug) {
+        [self.view addSubview:refreshButton];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

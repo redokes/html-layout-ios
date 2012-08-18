@@ -1,8 +1,23 @@
-<view class="UIFlexibleView" background-color="#dddddd" type="vbox" pack="center" align="stretch">
+<view class="UIFlexibleView" property="rootView" background-color="#dddddd" type="vbox" pack="center" align="stretch">
     <view class="UIToolbar" property="topToolbar" flex="0" width="50" height="44" background-color="#0000ff"></view>
-    <view class="UIFlexibleView" type="vbox" align="stretch" flex="1" margin="5">
-        <view class="UIWebView" property="webView" flex="1" width="50" height="50"></view>
-        <view class="UIWebView" flex="1" width="50" height="50"></view>
+    <view class="UIScrollView" property="scrollView" flex="1">
+        <view class="UIFlexibleView" property="scrollViewBody" type="vbox" flex="1" align="stretch">
+            <view class="UIButton" property="demoButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIWebView" property="webView" height="400"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+            <view class="UIButton" init="createButton" margin="2"></view>
+        </view>
     </view>
-    <view class="UIToolbar" property="bottomToolbar" flex="0" width="50" height="44" background-color="#ff0000"></view>
 </view>

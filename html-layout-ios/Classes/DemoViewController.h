@@ -8,10 +8,18 @@
 
 #import "HtmlViewController.h"
 
+@class UIFlexibleView;
+
 @interface DemoViewController : HtmlViewController
 
+@property UIFlexibleView *rootView;
 @property UIWebView *webView;
 @property UIToolbar *topToolbar;
 @property UITabBar *bottomToolbar;
+@property UIScrollView *scrollView;
+@property UIFlexibleView *scrollViewBody;
+@property UIButton *demoButton;
+
+- (UIButton *)createButton;
 
 @end

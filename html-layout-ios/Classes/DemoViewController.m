@@ -30,6 +30,16 @@
     [self initWebView];
 }
 
+- (void)initTopToolbar
+{
+    UILabel *title = [[UILabel alloc] init];
+    [title setTextColor:[UIColor whiteColor]];
+    [title setBackgroundColor:[UIColor clearColor]];
+    [title setText:@"Demo View Controller"];
+    [title sizeToFit];
+    [topToolbar addItem:title];
+}
+
 - (void)initWebView
 {
     //Load web view data
@@ -62,10 +72,13 @@
     [super viewDidLoad];
     
     //Animate the root view
-    [rootView setAnimate:YES];
+    //[rootView setAnimate:YES];
     
     //Setup the webview
     [self initWebView];
+    
+    //Setup the toolbar
+    [self initTopToolbar];
     
     //Set the content of the scroller
     [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, [scrollViewBody getTotalHeight])];

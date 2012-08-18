@@ -14,7 +14,7 @@
 
 @property UIFlexibleView *rootView;
 @property UIWebView *webView;
-@property UIToolbar *topToolbar;
+@property UIFlexibleView *topToolbar;
 @property UITabBar *bottomToolbar;
 @property UIScrollView *scrollView;
 @property UIFlexibleView *scrollViewBody;

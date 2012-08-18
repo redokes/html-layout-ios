@@ -125,6 +125,24 @@
 //////////////////////////////////////////////////////////
 //  Methods
 //////////////////////////////////////////////////////////
+- (void)sizeToFit
+{
+    CGRect frame = self.frame;
+    float width = [self getTotalWidth];
+    float height = [self getTotalHeight];
+    if (type == UIFlexibleViewTypeHorizontal) {
+        if (width > self.bounds.size.width) {
+            frame.size.width = width;
+        }
+    }
+    if (type == UIFlexibleViewTypeVertical) {
+        if (height > self.bounds.size.height) {
+            frame.size.height = height;
+        }
+    }
+    [self setFrame:frame];
+}
+
 - (NSArray *)getVisibleItems
 {
     NSMutableArray *visibleItems = [[NSMutableArray alloc] init];
@@ -190,6 +208,9 @@
     if ([items containsObject:view]) {
         return;
     }
+    
+    //Let this view handle the resizing
+    [view setAutoresizingMask:0];
     
     //Create the config
     NSDictionary *config = @{
@@ -280,6 +301,8 @@
         default:
             break;
     }
+    
+    [self sizeToFit];
 }
 
 - (void)layoutHorizontal
@@ -359,14 +382,14 @@
         CGRect frame = [frameValue CGRectValue];
         
         //Compute the x and y
-        int itemX = x + margin.origin.x;
-        int itemY = y + margin.origin.y;
+        float itemX = x + margin.origin.x;
+        float itemY = y + margin.origin.y;
         
         //Compute the item width
-        int itemWidth = 0;
+        float itemWidth = 0.0f;
         if(flex > 0){
             float flexRatio = (flex / (float)totalFlex);
-            itemWidth = (int)ceil((flexWidth * flexRatio));
+            itemWidth = (int)floor((flexWidth * flexRatio));
         }
         else{
             itemWidth = frame.size.width;
@@ -472,14 +495,14 @@
         CGRect frame = [frameValue CGRectValue];
         
         //Compute the x and y
-        int itemX = x + margin.origin.x;
-        int itemY = y + margin.origin.y;
+        float itemX = x + margin.origin.x;
+        float itemY = y + margin.origin.y;
         
         //Compute the item height
-        int itemHeight = 0;
+        float itemHeight = 0.0f;
         if(flex > 0){
             float flexRatio = (flex / (float)totalFlex);
-            itemHeight = (int)ceil((flexHeight * flexRatio));
+            itemHeight = ((flexHeight * flexRatio));
         }
         else{
             itemHeight = frame.size.height;

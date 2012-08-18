@@ -39,8 +39,25 @@
 
 - (UIView *)createViewFromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
-    //Create the view from the views class attribute
-    UIView *view = [[NSClassFromString([element objectForKey:@"class"]) alloc] init];
+    //Get the children and properties
+    NSMutableArray *children = [[NSMutableArray alloc] init];
+    NSMutableArray *selectors = [[NSMutableArray alloc] init];
+    TFHppleElement *alloc = nil;
+    for (TFHppleElement *childElement in element.children) {
+        if ([childElement.tagName isEqualToString:@"view"]) {
+            [children addObject:childElement];
+        }
+        if ([childElement.tagName isEqualToString:@"selector"]) {
+            [selectors addObject:childElement];
+        }
+        if ([childElement.tagName isEqualToString:@"alloc"]) {
+            alloc = childElement;
+        }
+    }
+    
+    
+    //Create the view
+    UIView *view = [self allocViewFromElement:element];
     
     //Apply the propery
     [self applyProperty:view fromElement:element withParentView:parentView];
@@ -51,13 +68,19 @@
     // Loop through attributes
     [self applyAttributes:view fromElement:element];
     
+    //Apply selectors
+    [self applySelectors:view fromElements:selectors];
+    
     //Set the frame
     [self applyFrame:view fromElement:element withParentView:(UIView *)parentView];
     
     // Process the children
-    SEL processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", [view class]]);
+    SEL processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", @"UIView"]);
+    if ([view isKindOfClass:NSClassFromString(@"UIFlexibleView")]) {
+            processChildrenSelector = NSSelectorFromString([NSString stringWithFormat:@"processChildren:for%@:", @"UIFlexibleView"]);
+    }
     if ([self respondsToSelector:processChildrenSelector]) {
-        [self performSelector:processChildrenSelector withObject:element.children withObject:view];
+        [self performSelector:processChildrenSelector withObject:children withObject:view];
     }
     
     //Return the view
@@ -67,6 +90,43 @@
 ///////////////////////////////////////////////////
 //  Apply Methods
 //////////////////////////////////////////////////
+- (UIView *)allocViewFromElement:(TFHppleElement *)element
+{
+    //Create the class
+    Class cls = NSClassFromString([element objectForKey:@"class"]);
+    UIView *view = nil;
+    
+    //Allocate and init the view
+    if ([element objectForKey:@"init"] != nil) {
+        SEL initSelector = NSSelectorFromString([element objectForKey:@"init"]);
+        if ([viewController respondsToSelector:initSelector]) {
+            view = [viewController performSelector:initSelector];
+        }
+    }
+    else {
+        view = [[cls alloc] init];
+    }
+    return view;
+    
+    //Create the alloc selector
+    /*
+    if (alloc != nil) {
+        SEL allocSelector = NSSelectorFromString([alloc objectForKey:@"name"]);
+        if ([alloc objectForKey:@"type"] != nil){
+            if ([[alloc objectForKey:@"type"] isEqualToString:@"int"]) {
+                view = objc_msgSend(cls, allocSelector, [[alloc objectForKey:@"value"] intValue]);
+            }
+        }
+        else {
+            view = objc_msgSend(cls, allocSelector, [alloc objectForKey:@"value"]);
+        }
+    }
+    else{
+        view = [[cls alloc] init];
+    }
+    */
+}
+
 - (void)applyProperty:(UIView *)view fromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
     //Set the property
@@ -76,6 +136,27 @@
     SEL propertySelector = NSSelectorFromString(selectorString);
     if ([viewController respondsToSelector:propertySelector]) {
         [viewController performSelector:propertySelector withObject:view];
+    }
+}
+
+- (void)applySelectors:(UIView *)view fromElements:(NSArray *)elements
+{
+    for (TFHppleElement *element in elements) {
+        NSString *name = [element objectForKey:@"name"];
+        NSString *value = [element objectForKey:@"value"];
+        NSString *type = [element objectForKey:@"type"];
+        SEL propertySelector = NSSelectorFromString(name);
+        if ([view respondsToSelector:propertySelector]) {
+            if ([type isEqualToString:@"int"]) {
+                [view performSelector:propertySelector withObject:[NSNumber numberWithInt:[value intValue]]];
+            }
+            else {
+                [view performSelector:propertySelector withObject:value];
+            }
+        }
+        
+        UIToolbar *tb = [[UIToolbar alloc] init];
+        [tb setBarStyle:UIBarStyleBlack];
     }
 }
 
@@ -115,17 +196,35 @@
     
     // Apply width
     NSString *width = [element objectForKey:@"width"];
-    if ([width contains:@"%"]) {
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-        frame.size.width = [width floatValue] / 100 * parentView.frame.size.width;
+    NSString *height = [element objectForKey:@"height"];
+    NSString *x = [element objectForKey:@"x"];
+    NSString *y = [element objectForKey:@"y"];
+    if (width != nil) {
+        if ([width contains:@"%"]) {
+            [view setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+            frame.size.width = [width floatValue] / 100 * parentView.frame.size.width;
+        }
+        else {
+            frame.size.width = [width intValue];
+        }
     }
-    else {
-        frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
+    
+    //Apply the height
+    if (height != nil) {
+        frame.size.height = [height intValue];
     }
-    frame.size.width = [(NSString *)[element objectForKey:@"width"] intValue];
-    frame.size.height = [(NSString *)[element objectForKey:@"height"] intValue];
-    frame.origin.x = [(NSString *)[element objectForKey:@"x"] intValue];
-    frame.origin.y = [(NSString *)[element objectForKey:@"y"] intValue];
+    
+    //Apply x
+    if (x != nil) {
+        frame.origin.x = [x intValue];
+    }
+    
+    //Apply y
+    if (y != nil) {
+        frame.origin.y = [y intValue];
+    }
+    
+    //Set the frame
     [view setFrame:frame];
 }
 

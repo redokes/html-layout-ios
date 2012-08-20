@@ -28,8 +28,24 @@
 		E47A5C7415E07811000B85F5 /* ExampleFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C7315E07811000B85F5 /* ExampleFormField.m */; };
 		E47A5C7815E09C4D000B85F5 /* ExampleFormFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C7715E09C4D000B85F5 /* ExampleFormFieldViewController.m */; };
 		E47A5C7A15E09C68000B85F5 /* field.html in Resources */ = {isa = PBXBuildFile; fileRef = E47A5C7915E09C68000B85F5 /* field.html */; };
+		E47A5D1815E28141000B85F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A5C2115DE8E59000B85F5 /* Foundation.framework */; };
+		E47A5D1D15E28141000B85F5 /* libHtmlLayoutIOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E47A5D1C15E28141000B85F5 /* libHtmlLayoutIOS.h */; };
+		E47A5D1F15E28141000B85F5 /* libHtmlLayoutIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5D1E15E28141000B85F5 /* libHtmlLayoutIOS.m */; };
 		F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E47A5D1515E28140000B85F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				E47A5D1D15E28141000B85F5 /* libHtmlLayoutIOS.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E47A5C1B15DE8E59000B85F5 /* html-layout-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "html-layout-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +84,10 @@
 		E47A5C7615E09C4D000B85F5 /* ExampleFormFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleFormFieldViewController.h; sourceTree = "<group>"; };
 		E47A5C7715E09C4D000B85F5 /* ExampleFormFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleFormFieldViewController.m; sourceTree = "<group>"; };
 		E47A5C7915E09C68000B85F5 /* field.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = field.html; path = "html-layout-ios/field.html"; sourceTree = SOURCE_ROOT; };
+		E47A5D1715E28140000B85F5 /* liblibHtmlLayoutIOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibHtmlLayoutIOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E47A5D1B15E28141000B85F5 /* libHtmlLayoutIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libHtmlLayoutIOS-Prefix.pch"; sourceTree = "<group>"; };
+		E47A5D1C15E28141000B85F5 /* libHtmlLayoutIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libHtmlLayoutIOS.h; sourceTree = "<group>"; };
+		E47A5D1E15E28141000B85F5 /* libHtmlLayoutIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libHtmlLayoutIOS.m; sourceTree = "<group>"; };
 		F5FCCE7415DE9EA30075AB8E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +104,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E47A5D1415E28140000B85F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E47A5D1815E28141000B85F5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				E47A5C2515DE8E59000B85F5 /* html-layout-ios */,
+				E47A5D1915E28141000B85F5 /* libHtmlLayoutIOS */,
 				E47A5C1E15DE8E59000B85F5 /* Frameworks */,
 				E47A5C1C15DE8E59000B85F5 /* Products */,
 			);
@@ -100,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				E47A5C1B15DE8E59000B85F5 /* html-layout-ios.app */,
+				E47A5D1715E28140000B85F5 /* liblibHtmlLayoutIOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +265,24 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		E47A5D1915E28141000B85F5 /* libHtmlLayoutIOS */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5D1C15E28141000B85F5 /* libHtmlLayoutIOS.h */,
+				E47A5D1E15E28141000B85F5 /* libHtmlLayoutIOS.m */,
+				E47A5D1A15E28141000B85F5 /* Supporting Files */,
+			);
+			path = libHtmlLayoutIOS;
+			sourceTree = "<group>";
+		};
+		E47A5D1A15E28141000B85F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5D1B15E28141000B85F5 /* libHtmlLayoutIOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -254,6 +302,23 @@
 			productName = "html-layout-ios";
 			productReference = E47A5C1B15DE8E59000B85F5 /* html-layout-ios.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E47A5D1615E28140000B85F5 /* libHtmlLayoutIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E47A5D2215E28141000B85F5 /* Build configuration list for PBXNativeTarget "libHtmlLayoutIOS" */;
+			buildPhases = (
+				E47A5D1315E28140000B85F5 /* Sources */,
+				E47A5D1415E28140000B85F5 /* Frameworks */,
+				E47A5D1515E28140000B85F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libHtmlLayoutIOS;
+			productName = libHtmlLayoutIOS;
+			productReference = E47A5D1715E28140000B85F5 /* liblibHtmlLayoutIOS.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -278,6 +343,7 @@
 			projectRoot = "";
 			targets = (
 				E47A5C1A15DE8E59000B85F5 /* html-layout-ios */,
+				E47A5D1615E28140000B85F5 /* libHtmlLayoutIOS */,
 			);
 		};
 /* End PBXProject section */
@@ -315,6 +381,14 @@
 				E47A5C7115E076C9000B85F5 /* ExampleViewController.m in Sources */,
 				E47A5C7415E07811000B85F5 /* ExampleFormField.m in Sources */,
 				E47A5C7815E09C4D000B85F5 /* ExampleFormFieldViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E47A5D1315E28140000B85F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E47A5D1F15E28141000B85F5 /* libHtmlLayoutIOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +479,30 @@
 			};
 			name = Release;
 		};
+		E47A5D2015E28141000B85F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libHtmlLayoutIOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libHtmlLayoutIOS/libHtmlLayoutIOS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E47A5D2115E28141000B85F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libHtmlLayoutIOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libHtmlLayoutIOS/libHtmlLayoutIOS-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -425,6 +523,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E47A5D2215E28141000B85F5 /* Build configuration list for PBXNativeTarget "libHtmlLayoutIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E47A5D2015E28141000B85F5 /* Debug */,
+				E47A5D2115E28141000B85F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

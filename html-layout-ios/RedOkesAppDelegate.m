@@ -7,7 +7,7 @@
 //
 
 #import "RedOkesAppDelegate.h"
-#import "DemoViewController.h"
+#import "ExampleViewController.h"
 
 @implementation RedOkesAppDelegate
 
@@ -18,7 +18,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     //Create the view controller
-    DemoViewController *htmlView = [[DemoViewController alloc] init];
+    ExampleViewController *htmlView = [[ExampleViewController alloc] init];
     self.window.rootViewController = htmlView;
     
     [self.window makeKeyAndVisible];

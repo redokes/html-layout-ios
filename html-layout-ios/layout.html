@@ -1,20 +1,9 @@
-<view class="UIFlexibleView" property="rootView" background-color="#dddddd" type="vbox" pack="center" align="stretch">
-    <view class="UIFlexibleView" property="topToolbar" height="44" align="middle" pack="center" background-color="#333333"></view>
-    <view class="UIScrollView" property="scrollView" flex="1">
-        <view class="UIFlexibleView" property="scrollViewBody" type="vbox" flex="1" align="stretch">
-            <view class="UIButton" property="demoButton" init="createButton" margin="5"></view>
-            <view class="UIFlexibleView" align="stretch" height="40" margin="5">
-                <view class="UIView" background-color="#3300ff" flex="1"></view>
-                <view class="UIView" background-color="#04f0f8" flex="1"></view>
-                <view class="UIView" background-color="#5f7830" flex="1"></view>
-            </view>
-            <view class="UIButton" init="createButton" height="50" margin="5"></view>
-            <view class="UIButton" init="createButton" height="50" margin="5"></view>
-            <view class="UIButton" init="createButton" height="50" margin="5"></view>
-            <view class="UIButton" init="createButton" height="50" margin="5"></view>
-            <view class="UIButton" init="createButton" height="50" margin="5"></view>
-            <view class="UIButton" init="createButton" height="50" margin="5"></view>
-        </view>
+<view class="UIFlexibleView" id="rootView" background-color="#dddddd" type="vbox" align="stretch">
+    <view class="UIFlexibleView" id="topToolbar" height="44" align="middle" pack="center" background-color="#333333"></view>
+    <view class="ExampleFormViewController" flex="1"></view>
+    <view class="UIFlexibleView" id="bottomToolbar" height="44" align="stretch" pack="center" background-color="#333333">
+        <view init="createButton" flex="1" margin="5"></view>
+        <view init="createButton" flex="2" margin="5"></view>
+        <view init="createButton" flex="1" margin="5"></view>
     </view>
-    <view class="UIWebView" property="webView" flex="1"></view>
 </view>

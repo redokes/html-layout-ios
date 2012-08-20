@@ -13,8 +13,6 @@
 		E47A5C2A15DE8E59000B85F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E47A5C2815DE8E59000B85F5 /* InfoPlist.strings */; };
 		E47A5C2C15DE8E59000B85F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C2B15DE8E59000B85F5 /* main.m */; };
 		E47A5C3015DE8E59000B85F5 /* RedOkesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C2F15DE8E59000B85F5 /* RedOkesAppDelegate.m */; };
-		E47A5C4615DE9018000B85F5 /* HtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C3B15DE9018000B85F5 /* HtmlViewController.m */; };
-		E47A5C4715DE9018000B85F5 /* UIFlexibleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C3D15DE9018000B85F5 /* UIFlexibleView.m */; };
 		E47A5C4815DE9018000B85F5 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C4115DE9018000B85F5 /* TFHpple.m */; };
 		E47A5C4915DE9018000B85F5 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C4315DE9018000B85F5 /* TFHppleElement.m */; };
 		E47A5C4A15DE9018000B85F5 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C4515DE9018000B85F5 /* XPathQuery.m */; };
@@ -22,7 +20,14 @@
 		E47A5C5015DE90DA000B85F5 /* UIColor+CreateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C4F15DE90DA000B85F5 /* UIColor+CreateMethods.m */; };
 		E47A5C5215DE9136000B85F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */; };
 		E47A5C5615DE98D5000B85F5 /* HtmlViewParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */; };
-		E47A5C5C15DED036000B85F5 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C5B15DED036000B85F5 /* DemoViewController.m */; };
+		E47A5C5E15E047FC000B85F5 /* form.html in Resources */ = {isa = PBXBuildFile; fileRef = E47A5C5D15E047FC000B85F5 /* form.html */; };
+		E47A5C6815E076BC000B85F5 /* HtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C6415E076BC000B85F5 /* HtmlViewController.m */; };
+		E47A5C6915E076BC000B85F5 /* UIFlexibleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C6715E076BC000B85F5 /* UIFlexibleView.m */; };
+		E47A5C7015E076C9000B85F5 /* ExampleFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C6D15E076C9000B85F5 /* ExampleFormViewController.m */; };
+		E47A5C7115E076C9000B85F5 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C6F15E076C9000B85F5 /* ExampleViewController.m */; };
+		E47A5C7415E07811000B85F5 /* ExampleFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C7315E07811000B85F5 /* ExampleFormField.m */; };
+		E47A5C7815E09C4D000B85F5 /* ExampleFormFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C7715E09C4D000B85F5 /* ExampleFormFieldViewController.m */; };
+		E47A5C7A15E09C68000B85F5 /* field.html in Resources */ = {isa = PBXBuildFile; fileRef = E47A5C7915E09C68000B85F5 /* field.html */; };
 		F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +42,6 @@
 		E47A5C2D15DE8E59000B85F5 /* html-layout-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "html-layout-ios-Prefix.pch"; sourceTree = "<group>"; };
 		E47A5C2E15DE8E59000B85F5 /* RedOkesAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedOkesAppDelegate.h; sourceTree = "<group>"; };
 		E47A5C2F15DE8E59000B85F5 /* RedOkesAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedOkesAppDelegate.m; sourceTree = "<group>"; };
-		E47A5C3A15DE9018000B85F5 /* HtmlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlViewController.h; sourceTree = "<group>"; };
-		E47A5C3B15DE9018000B85F5 /* HtmlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlViewController.m; sourceTree = "<group>"; };
-		E47A5C3C15DE9018000B85F5 /* UIFlexibleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFlexibleView.h; sourceTree = "<group>"; };
-		E47A5C3D15DE9018000B85F5 /* UIFlexibleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFlexibleView.m; sourceTree = "<group>"; };
 		E47A5C4015DE9018000B85F5 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		E47A5C4115DE9018000B85F5 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
 		E47A5C4215DE9018000B85F5 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
@@ -53,8 +54,20 @@
 		E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		E47A5C5415DE98D5000B85F5 /* HtmlViewParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlViewParser.h; sourceTree = "<group>"; };
 		E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlViewParser.m; sourceTree = "<group>"; };
-		E47A5C5A15DED036000B85F5 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
-		E47A5C5B15DED036000B85F5 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		E47A5C5D15E047FC000B85F5 /* form.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = form.html; sourceTree = "<group>"; };
+		E47A5C6315E076BC000B85F5 /* HtmlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlViewController.h; sourceTree = "<group>"; };
+		E47A5C6415E076BC000B85F5 /* HtmlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlViewController.m; sourceTree = "<group>"; };
+		E47A5C6615E076BC000B85F5 /* UIFlexibleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFlexibleView.h; sourceTree = "<group>"; };
+		E47A5C6715E076BC000B85F5 /* UIFlexibleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFlexibleView.m; sourceTree = "<group>"; };
+		E47A5C6C15E076C9000B85F5 /* ExampleFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleFormViewController.h; sourceTree = "<group>"; };
+		E47A5C6D15E076C9000B85F5 /* ExampleFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleFormViewController.m; sourceTree = "<group>"; };
+		E47A5C6E15E076C9000B85F5 /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		E47A5C6F15E076C9000B85F5 /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		E47A5C7215E07811000B85F5 /* ExampleFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleFormField.h; path = Views/ExampleFormField.h; sourceTree = "<group>"; };
+		E47A5C7315E07811000B85F5 /* ExampleFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleFormField.m; path = Views/ExampleFormField.m; sourceTree = "<group>"; };
+		E47A5C7615E09C4D000B85F5 /* ExampleFormFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleFormFieldViewController.h; sourceTree = "<group>"; };
+		E47A5C7715E09C4D000B85F5 /* ExampleFormFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleFormFieldViewController.m; sourceTree = "<group>"; };
+		E47A5C7915E09C68000B85F5 /* field.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = field.html; path = "html-layout-ios/field.html"; sourceTree = SOURCE_ROOT; };
 		F5FCCE7415DE9EA30075AB8E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,10 +118,13 @@
 		E47A5C2515DE8E59000B85F5 /* html-layout-ios */ = {
 			isa = PBXGroup;
 			children = (
+				E47A5C6A15E076C9000B85F5 /* Example */,
 				E47A5C4D15DE90DA000B85F5 /* Categories */,
 				E47A5C3915DE9018000B85F5 /* Classes */,
 				E47A5C3E15DE9018000B85F5 /* External */,
+				E47A5C7915E09C68000B85F5 /* field.html */,
 				E47A5C4B15DE907D000B85F5 /* layout.html */,
+				E47A5C5D15E047FC000B85F5 /* form.html */,
 				E47A5C2E15DE8E59000B85F5 /* RedOkesAppDelegate.h */,
 				E47A5C2F15DE8E59000B85F5 /* RedOkesAppDelegate.m */,
 				E47A5C2615DE8E59000B85F5 /* Supporting Files */,
@@ -130,14 +146,10 @@
 		E47A5C3915DE9018000B85F5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E47A5C3A15DE9018000B85F5 /* HtmlViewController.h */,
-				E47A5C3B15DE9018000B85F5 /* HtmlViewController.m */,
-				E47A5C3C15DE9018000B85F5 /* UIFlexibleView.h */,
-				E47A5C3D15DE9018000B85F5 /* UIFlexibleView.m */,
+				E47A5C6215E076BC000B85F5 /* Controllers */,
+				E47A5C6515E076BC000B85F5 /* Views */,
 				E47A5C5415DE98D5000B85F5 /* HtmlViewParser.h */,
 				E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */,
-				E47A5C5A15DED036000B85F5 /* DemoViewController.h */,
-				E47A5C5B15DED036000B85F5 /* DemoViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -172,6 +184,55 @@
 				F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		E47A5C6215E076BC000B85F5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5C6315E076BC000B85F5 /* HtmlViewController.h */,
+				E47A5C6415E076BC000B85F5 /* HtmlViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E47A5C6515E076BC000B85F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5C6615E076BC000B85F5 /* UIFlexibleView.h */,
+				E47A5C6715E076BC000B85F5 /* UIFlexibleView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E47A5C6A15E076C9000B85F5 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5C6B15E076C9000B85F5 /* Controllers */,
+				E47A5C7515E07826000B85F5 /* Views */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		E47A5C6B15E076C9000B85F5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5C6C15E076C9000B85F5 /* ExampleFormViewController.h */,
+				E47A5C6D15E076C9000B85F5 /* ExampleFormViewController.m */,
+				E47A5C6E15E076C9000B85F5 /* ExampleViewController.h */,
+				E47A5C6F15E076C9000B85F5 /* ExampleViewController.m */,
+				E47A5C7615E09C4D000B85F5 /* ExampleFormFieldViewController.h */,
+				E47A5C7715E09C4D000B85F5 /* ExampleFormFieldViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E47A5C7515E07826000B85F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5C7215E07811000B85F5 /* ExampleFormField.h */,
+				E47A5C7315E07811000B85F5 /* ExampleFormField.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +289,8 @@
 			files = (
 				E47A5C2A15DE8E59000B85F5 /* InfoPlist.strings in Resources */,
 				E47A5C4C15DE907D000B85F5 /* layout.html in Resources */,
+				E47A5C5E15E047FC000B85F5 /* form.html in Resources */,
+				E47A5C7A15E09C68000B85F5 /* field.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,15 +303,18 @@
 			files = (
 				E47A5C2C15DE8E59000B85F5 /* main.m in Sources */,
 				E47A5C3015DE8E59000B85F5 /* RedOkesAppDelegate.m in Sources */,
-				E47A5C4615DE9018000B85F5 /* HtmlViewController.m in Sources */,
-				E47A5C4715DE9018000B85F5 /* UIFlexibleView.m in Sources */,
 				E47A5C4815DE9018000B85F5 /* TFHpple.m in Sources */,
 				E47A5C4915DE9018000B85F5 /* TFHppleElement.m in Sources */,
 				E47A5C4A15DE9018000B85F5 /* XPathQuery.m in Sources */,
 				E47A5C5015DE90DA000B85F5 /* UIColor+CreateMethods.m in Sources */,
 				F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */,
 				E47A5C5615DE98D5000B85F5 /* HtmlViewParser.m in Sources */,
-				E47A5C5C15DED036000B85F5 /* DemoViewController.m in Sources */,
+				E47A5C6815E076BC000B85F5 /* HtmlViewController.m in Sources */,
+				E47A5C6915E076BC000B85F5 /* UIFlexibleView.m in Sources */,
+				E47A5C7015E076C9000B85F5 /* ExampleFormViewController.m in Sources */,
+				E47A5C7115E076C9000B85F5 /* ExampleViewController.m in Sources */,
+				E47A5C7415E07811000B85F5 /* ExampleFormField.m in Sources */,
+				E47A5C7815E09C4D000B85F5 /* ExampleFormFieldViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

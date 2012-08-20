@@ -39,7 +39,7 @@
 
 - (UIView *)createViewFromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
-    //Get the children and properties
+    //Get the children and selectors
     NSMutableArray *children = [[NSMutableArray alloc] init];
     NSMutableArray *selectors = [[NSMutableArray alloc] init];
     TFHppleElement *alloc = nil;
@@ -56,11 +56,23 @@
     }
     
     
-    //Create the view
-    UIView *view = [self allocViewFromElement:element];
+    //Create the object
+    UIView *view = nil;
+    UIViewController *vc = nil;
+    id viewObject = [self allocViewFromElement:element];
+
+    //Determine if this is a view controller
+    if ([viewObject isKindOfClass:[UIViewController class]]) {
+        vc = (UIViewController *)viewObject;
+        view = vc.view;
+        [viewController addChildViewController:vc];
+    }
+    else {
+        view = (UIView *)viewObject;
+    }
     
     //Apply the propery
-    [self applyProperty:view fromElement:element withParentView:parentView];
+    [self applyProperty:viewObject fromElement:element withParentView:parentView];
     
     //Set the background color if necessary
     [self applyBackgroundColor:view fromElement:element];
@@ -90,52 +102,34 @@
 ///////////////////////////////////////////////////
 //  Apply Methods
 //////////////////////////////////////////////////
-- (UIView *)allocViewFromElement:(TFHppleElement *)element
+- (id)allocViewFromElement:(TFHppleElement *)element
 {
     //Create the class
     Class cls = NSClassFromString([element objectForKey:@"class"]);
-    UIView *view = nil;
+    id viewObject = nil;
     
     //Allocate and init the view
     if ([element objectForKey:@"init"] != nil) {
         SEL initSelector = NSSelectorFromString([element objectForKey:@"init"]);
         if ([viewController respondsToSelector:initSelector]) {
-            view = [viewController performSelector:initSelector];
+            viewObject = [viewController performSelector:initSelector];
         }
     }
     else {
-        view = [[cls alloc] init];
+        viewObject = [[cls alloc] init];
     }
-    return view;
-    
-    //Create the alloc selector
-    /*
-    if (alloc != nil) {
-        SEL allocSelector = NSSelectorFromString([alloc objectForKey:@"name"]);
-        if ([alloc objectForKey:@"type"] != nil){
-            if ([[alloc objectForKey:@"type"] isEqualToString:@"int"]) {
-                view = objc_msgSend(cls, allocSelector, [[alloc objectForKey:@"value"] intValue]);
-            }
-        }
-        else {
-            view = objc_msgSend(cls, allocSelector, [alloc objectForKey:@"value"]);
-        }
-    }
-    else{
-        view = [[cls alloc] init];
-    }
-    */
+    return viewObject;
 }
 
-- (void)applyProperty:(UIView *)view fromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
+- (void)applyProperty:(id)viewObject fromElement:(TFHppleElement *)element withParentView:(UIView *)parentView
 {
     //Set the property
-    NSString *property = [element objectForKey:@"property"];
+    NSString *property = [element objectForKey:@"id"];
     property = [property capitalize];
     NSString *selectorString = [NSString stringWithFormat:@"set%@:", property];
     SEL propertySelector = NSSelectorFromString(selectorString);
     if ([viewController respondsToSelector:propertySelector]) {
-        [viewController performSelector:propertySelector withObject:view];
+        [viewController performSelector:propertySelector withObject:viewObject];
     }
 }
 
@@ -188,9 +182,6 @@
     
     // Check if this is the root view
     if (parentView == nil) {
-        frame.size.width = 10;
-        frame.size.height = 10;
-        [view setFrame:frame];
         return;
     }
     
@@ -247,35 +238,8 @@
         NSMutableDictionary *config = [[view getDefaultConfig] mutableCopy];
         
         // Check for margin
-        CGRect margin = CGRectMake(0, 0, 0, 0);
         if ([childElement objectForKey:@"margin"] != nil) {
-            NSArray *marginParts = [[childElement objectForKey:@"margin"] componentsSeparatedByString:@" "];
-            int numParts = [marginParts count];
-            int marginTop = [[marginParts objectAtIndex:0] intValue];
-            int marginRight = 0;
-            int marginBottom = 0;
-            int marginLeft = 0;
-            switch (numParts) {
-                case 1:
-                    marginRight = marginBottom = marginLeft = marginTop;
-                    break;
-                case 2:
-                    marginBottom = marginTop;
-                    marginRight = marginLeft = [[marginParts objectAtIndex:1] intValue];
-                    break;
-                case 3:
-                    marginRight = marginLeft = [[marginParts objectAtIndex:1] intValue];
-                    marginBottom = [[marginParts objectAtIndex:2] intValue];
-                    break;
-                case 4:
-                    marginRight = [[marginParts objectAtIndex:1] intValue];
-                    marginBottom = [[marginParts objectAtIndex:2] intValue];
-                    marginLeft = [[marginParts objectAtIndex:3] intValue];
-                    break;
-            }
-            
-            margin = CGRectMake(marginLeft, marginTop, marginRight, marginBottom);
-            [config setObject:[NSValue valueWithCGRect:margin] forKey:@"margin"];
+            [config setObject:[NSValue valueWithCGRect:[UIFlexibleView processRectString:[childElement objectForKey:@"margin"]]] forKey:@"margin"];
         }
         
         // Check for flex
@@ -288,6 +252,5 @@
         [view addItem:childView withFlex:[(NSNumber *)[config objectForKey:@"flex"] intValue] andMargin:[(NSValue *)[config objectForKey:@"margin"] CGRectValue]];
     }
 }
-
 
 @end

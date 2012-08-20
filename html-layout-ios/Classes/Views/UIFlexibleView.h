@@ -46,6 +46,8 @@ typedef NSUInteger UIFlexibleViewType;
 @property (nonatomic) BOOL animate;
 @property (nonatomic) NSMutableArray *items;
 @property (nonatomic, readonly) NSMutableDictionary *configs;
+@property (nonatomic) CGRect padding;
+@property (nonatomic) CGRect margin;
 
 //Methods
 - (void)initComponent;
@@ -68,5 +70,9 @@ typedef NSUInteger UIFlexibleViewType;
 - (void)setAlign:(UIFlexibleViewAlign)newAlign;
 - (void)setPackFromString:(NSString *)packString;
 - (void)setPack:(UIFlexibleViewPack)newPack;
+- (void)setPaddingFromString:(NSString *)paddingString;
+
+//Static methods
++ (CGRect)processRectString:(NSString *)rectString;
 
 @end

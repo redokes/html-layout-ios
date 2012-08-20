@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Jared Lewis. All rights reserved.
 //
 
-#import "DemoViewController.h"
+#import "ExampleViewController.h"
 #import "UIFlexibleView.h"
 
-@interface DemoViewController ()
+@interface ExampleViewController ()
 
 @end
 
-@implementation DemoViewController
+@implementation ExampleViewController
 
 @synthesize rootView;
 @synthesize webView;
@@ -79,9 +79,6 @@
     
     //Setup the toolbar
     [self initTopToolbar];
-    
-    //Set the content of the scroller
-    [scrollView setContentSize:CGSizeMake(scrollView.frame.size.width, [scrollViewBody getTotalHeight])];
     
     //Add an action to the demo button
     [demoButton addTarget:self action:@selector(toggleToolbar) forControlEvents:UIControlEventTouchUpInside];

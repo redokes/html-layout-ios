@@ -10,7 +10,7 @@
 
 @class UIFlexibleView;
 
-@interface DemoViewController : HtmlViewController
+@interface ExampleViewController : HtmlViewController
 
 @property UIFlexibleView *rootView;
 @property UIWebView *webView;

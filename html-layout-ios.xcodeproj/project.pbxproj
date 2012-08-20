@@ -23,8 +23,24 @@
 		E47A5C5215DE9136000B85F5 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A5C5115DE9136000B85F5 /* libxml2.2.dylib */; };
 		E47A5C5615DE98D5000B85F5 /* HtmlViewParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */; };
 		E47A5C5C15DED036000B85F5 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5C5B15DED036000B85F5 /* DemoViewController.m */; };
+		E47A5CCE15E27B7B000B85F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A5C2115DE8E59000B85F5 /* Foundation.framework */; };
+		E47A5CD315E27B7B000B85F5 /* libHtmlLayoutIos.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E47A5CD215E27B7B000B85F5 /* libHtmlLayoutIos.h */; };
+		E47A5CD515E27B7B000B85F5 /* libHtmlLayoutIos.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A5CD415E27B7B000B85F5 /* libHtmlLayoutIos.m */; };
 		F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E47A5CCB15E27B7B000B85F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				E47A5CD315E27B7B000B85F5 /* libHtmlLayoutIos.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E47A5C1B15DE8E59000B85F5 /* html-layout-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "html-layout-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +71,10 @@
 		E47A5C5515DE98D5000B85F5 /* HtmlViewParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlViewParser.m; sourceTree = "<group>"; };
 		E47A5C5A15DED036000B85F5 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		E47A5C5B15DED036000B85F5 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		E47A5CCD15E27B7B000B85F5 /* liblibHtmlLayoutIos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibHtmlLayoutIos.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E47A5CD115E27B7B000B85F5 /* libHtmlLayoutIos-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libHtmlLayoutIos-Prefix.pch"; sourceTree = "<group>"; };
+		E47A5CD215E27B7B000B85F5 /* libHtmlLayoutIos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libHtmlLayoutIos.h; sourceTree = "<group>"; };
+		E47A5CD415E27B7B000B85F5 /* libHtmlLayoutIos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libHtmlLayoutIos.m; sourceTree = "<group>"; };
 		F5FCCE7415DE9EA30075AB8E /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		F5FCCE7515DE9EA30075AB8E /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +91,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E47A5CCA15E27B7B000B85F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E47A5CCE15E27B7B000B85F5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E47A5C2515DE8E59000B85F5 /* html-layout-ios */,
+				E47A5CCF15E27B7B000B85F5 /* libHtmlLayoutIos */,
 				E47A5C1E15DE8E59000B85F5 /* Frameworks */,
 				E47A5C1C15DE8E59000B85F5 /* Products */,
 			);
@@ -87,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				E47A5C1B15DE8E59000B85F5 /* html-layout-ios.app */,
+				E47A5CCD15E27B7B000B85F5 /* liblibHtmlLayoutIos.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +204,24 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		E47A5CCF15E27B7B000B85F5 /* libHtmlLayoutIos */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5CD215E27B7B000B85F5 /* libHtmlLayoutIos.h */,
+				E47A5CD415E27B7B000B85F5 /* libHtmlLayoutIos.m */,
+				E47A5CD015E27B7B000B85F5 /* Supporting Files */,
+			);
+			path = libHtmlLayoutIos;
+			sourceTree = "<group>";
+		};
+		E47A5CD015E27B7B000B85F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E47A5CD115E27B7B000B85F5 /* libHtmlLayoutIos-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,6 +241,23 @@
 			productName = "html-layout-ios";
 			productReference = E47A5C1B15DE8E59000B85F5 /* html-layout-ios.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E47A5CCC15E27B7B000B85F5 /* libHtmlLayoutIos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E47A5CD815E27B7B000B85F5 /* Build configuration list for PBXNativeTarget "libHtmlLayoutIos" */;
+			buildPhases = (
+				E47A5CC915E27B7B000B85F5 /* Sources */,
+				E47A5CCA15E27B7B000B85F5 /* Frameworks */,
+				E47A5CCB15E27B7B000B85F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libHtmlLayoutIos;
+			productName = libHtmlLayoutIos;
+			productReference = E47A5CCD15E27B7B000B85F5 /* liblibHtmlLayoutIos.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -217,6 +282,7 @@
 			projectRoot = "";
 			targets = (
 				E47A5C1A15DE8E59000B85F5 /* html-layout-ios */,
+				E47A5CCC15E27B7B000B85F5 /* libHtmlLayoutIos */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +315,14 @@
 				F5FCCE7615DE9EA30075AB8E /* NSString+Util.m in Sources */,
 				E47A5C5615DE98D5000B85F5 /* HtmlViewParser.m in Sources */,
 				E47A5C5C15DED036000B85F5 /* DemoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E47A5CC915E27B7B000B85F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E47A5CD515E27B7B000B85F5 /* libHtmlLayoutIos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +413,30 @@
 			};
 			name = Release;
 		};
+		E47A5CD615E27B7B000B85F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libHtmlLayoutIos.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libHtmlLayoutIos/libHtmlLayoutIos-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E47A5CD715E27B7B000B85F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libHtmlLayoutIos.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libHtmlLayoutIos/libHtmlLayoutIos-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -359,6 +457,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E47A5CD815E27B7B000B85F5 /* Build configuration list for PBXNativeTarget "libHtmlLayoutIos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E47A5CD615E27B7B000B85F5 /* Debug */,
+				E47A5CD715E27B7B000B85F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
